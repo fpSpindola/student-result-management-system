@@ -1,0 +1,35 @@
+{% extends 'sidebar_base.html' %}
+
+{% load bootstrap_filters %}
+
+{% block title %}Add Result{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Add Result</h3>
+        </div>
+        <div class="card-body">
+            <form method="POST" class="row g-3">
+                {% csrf_token %}
+                <div class="col-md-6">
+                    <label for="id_course" class="form-label">Course:</label>
+                    {{ form.course|add_class:"form-select" }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_student" class="form-label">Student:</label>
+                    {{ form.student|add_class:"form-select" }}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_score" class="form-label">Score:</label>
+                    {{ form.score|add_class:"form-select" }}
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

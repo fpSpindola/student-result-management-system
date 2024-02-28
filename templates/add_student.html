@@ -1,0 +1,57 @@
+{% extends 'sidebar_base.html' %}
+{% load bootstrap_filters %}
+{% block title %}Add New Student{% endblock %}
+
+{% block content %}
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true,
+            });
+        });
+    </script>
+
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Add New Student</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-md-6">
+                        <label for="id_first_name" class="form-label">First Name:</label>
+                        {{ form.first_name|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_last_name" class="form-label">Last Name:</label>
+                        {{ form.family_name|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_date_of_birth" class="form-label">Date of Birth:</label>
+                        {{ form.date_of_birth|add_class:"form-control datepicker" }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_email" class="form-label">Email:</label>
+                        {{ form.email|add_class:"form-control" }}
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Add Student</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true,
+            });
+        });
+    </script>
+{% endblock %}

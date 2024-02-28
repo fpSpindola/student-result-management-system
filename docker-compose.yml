@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: gunicorn StudentResultManagementSystem.wsgi -c config/gunicorn.py
+    labels:
+      com.shyftlabs.project: student-result-management-system
+    env_file: .env
+    volumes:
+      - .:/app:z
+    ports:
+      - "${PORT}:${PORT}"
