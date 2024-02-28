@@ -1,34 +1,24 @@
-# Use the official Python base image with a specific version
-FROM python:3.9.7-alpine
+ARG PYTHON_VERSION=3.9-slim-bullseye
 
-RUN adduser -D spind
+FROM python:${PYTHON_VERSION}
 
-RUN apk add --update --no-cache postgresql-dev libffi-dev openssl-dev musl-dev make g++ gcc cargo gdal-dev geos-dev
-
-# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set the working directory in the container
-WORKDIR /app
+RUN mkdir -p /code
+
+WORKDIR /code
 
 COPY requirements.txt /tmp/requirements.txt
+RUN set -ex && \
+    pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt && \
+    rm -rf /root/.cache/
+COPY . /code
 
-# Install any dependencies specified in requirements.txt
-RUN cd /tmp/ && pip install --no-cache-dir --disable-pip-version-check -r requirements.txt
-
-COPY --chown=spind:spind . /app
-
-# Collect static files
+ENV SECRET_KEY "4OQZmj2T255KpUUxuvg5MUByft4aDg3gRrgc1b0rkykJ5p4fJj"
 RUN python manage.py collectstatic --noinput
 
-# Run database migrations
-RUN python manage.py migrate
-
-# Expose the port the app runs on
 EXPOSE 8000
 
-USER spind
-
-# Define the command to run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "StudentResultManagementSystem.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "StudentResultManagementSystem.wsgi"]
