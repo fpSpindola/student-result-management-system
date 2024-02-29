@@ -21,8 +21,14 @@ build: build_base_image
 check_rebuild:
 	./bin/rebuild.sh
 
+makemigrations: check_rebuild
+	./bin/run.sh python manage.py makemigrations
+
 migrate: check_rebuild
 	./bin/run.sh python manage.py migrate --no-input
+
+run: check_rebuild
+	docker-compose up
 
 collectstatic:
 	./bin/run.sh python manage.py collectstatic

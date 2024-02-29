@@ -9,60 +9,83 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
+        /* Custom sidebar styles */
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            min-height: 100vh;
             margin: 0;
         }
+        
         .sidebar {
+            height: 100%;
             width: 250px;
-            background-color: #f1f1f1;
-            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin: 0;
+            background-color: #f8f9fa;
+            padding-top: 20px;
         }
-        .content {
-            flex: 1;
-            padding: 20px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        a {
-            text-decoration: none;
-            color: #333;
+
+        .sidebar a {
+            padding: 10px 15px;
+            font-size: 18px;
             display: block;
-            padding: 5px;
+            color: #212529;
         }
-        a:hover {
-            color: #007bff;
+
+        .sidebar a:hover {
+            background-color: #e9ecef;
         }
-        .active {
-            background-color: #007bff;
-            color: #fff;
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
         }
+
+        /* Custom header styles */
+        .header {
+            background-color: #f8f9fa;
+            color: #606060;
+            padding: 20px;
+            text-align: center;
+            h1.
+        }
+
     </style>
 </head>
 <body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Sidebar -->
     <div class="sidebar">
-        <ul>
-            <li><a href="{% url '' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-            <li><a href="{% url 'add_student' %}" class="{% if request.path == '/add_student/' %}active{% endif %}">Add New Students</a></li>
-            <li><a href="{% url 'student_list' %}" class="{% if request.path == '/student_list/' %}active{% endif %}">Students List</a></li>
-            <li><a href="{% url 'create_course' %}" class="{% if request.path == '/add_course/' %}active{% endif %}">Add New Courses</a></li>
-            <li><a href="{% url 'course_list' %}" class="{% if request.path == '/course_list/' %}active{% endif %}">Courses List</a></li>
-            <li><a href="{% url 'add_result' %}" class="{% if request.path == '/add_result/' %}active{% endif %}">Add New Results</a></li>
-            <li><a href="{% url 'result_list' %}" class="{% if request.path == '/result_list/' %}active{% endif %}">Result List</a></li>
+        <!-- Sidebar Links -->
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url '' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_student' %}">Add New Students</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'student_list' %}">Students List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'create_course' %}">Add New Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'course_list' %}">Courses List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_result' %}">Add New Results</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'result_list' %}">Results List</a>
+            </li>
         </ul>
     </div>
+
+    <!-- Page Content -->
     <div class="content">
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
