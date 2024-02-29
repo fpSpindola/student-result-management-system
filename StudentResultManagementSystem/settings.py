@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = ["https://student-result-management-system.fly.dev"]
 
 # Application definition
 

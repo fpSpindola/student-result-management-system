@@ -12,12 +12,13 @@ WORKDIR /code
 COPY requirements.txt /tmp/requirements.txt
 RUN set -ex && \
     pip install --upgrade pip && \
+    pip install --no-cache-dir --disable-pip-version-check pip-tools \
     pip install -r /tmp/requirements.txt && \
     rm -rf /root/.cache/
+
 COPY . /code
 
 ENV SECRET_KEY "4OQZmj2T255KpUUxuvg5MUByft4aDg3gRrgc1b0rkykJ5p4fJj"
-RUN python manage.py collectstatic --noinput
 
 RUN python manage.py migrate
 
