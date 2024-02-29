@@ -16,6 +16,14 @@ cp .env-sample .env
 make lock
 ```
 
+```sh
+make makemigrations
+```
+
+```sh
+make migrate
+```
+
 ## How to build
 
 ```sh
@@ -31,6 +39,7 @@ make run
 
 ## Explanation Video
 
+https://youtu.be/GtamluKQKgA
 
 ## Deployed instance
 
